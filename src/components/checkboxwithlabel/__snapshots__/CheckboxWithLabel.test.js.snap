@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test CheckBoxWith label rendrer 1`] = `
+<label>
+  <input
+    checked={false}
+    onChange={[Function]}
+    type="checkbox"
+  />
+</label>
+`;
+
+exports[`Test CheckBoxWith label rendrer 2`] = `
+<label>
+  <input
+    checked={false}
+    onChange={[Function]}
+    type="checkbox"
+  />
+  Off
+</label>
+`;
