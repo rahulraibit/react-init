@@ -4,7 +4,7 @@ import configureStore from './store';
 import { Router, Route } from 'react-router'
 import App from './App'
 import { createBrowserHistory } from 'history'
-import { TODO } from './container/index'
+import { TODO, Greeting } from './container/index'
 
 const history = createBrowserHistory();
 export const store = configureStore();
@@ -15,6 +15,7 @@ export const route = (
             <App id="LAYOUT">
                 <Route exact path="/" component={TODO} id="todo" />
                 <Route path="/todo" component={TODO} id="todo" />
+                <Route path="/greet" component={Greeting} id="todo" />
             </App>
         </Router>
     </Provider>
