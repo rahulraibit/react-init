@@ -4,7 +4,7 @@ import "./App.css";
 class App extends Component {
   render() {
     return (
-      <div>{this.props.children}</div>
+      <div className='App'>{this.props.children}</div>
     );
   }
 }

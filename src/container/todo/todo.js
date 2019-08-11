@@ -1,51 +1,26 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import {
     withStyles,
-    List,
-    ListItem,
-    ListItemSecondaryAction,
-    ListItemText,
-    IconButton,
     Grid,
     TextField,
-    Button
+    Icon,
+    Fab
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from '@material-ui/icons/Add';
 import ACTIONS from "./todoAction";
 import { connect } from "react-redux";
-
 const styles = theme => ({
-    root: {
-        flexGrow: 1,
-        maxWidth: 752
+    fab: {
+        margin: theme.spacing(1),
     },
-    demo: {
-        backgroundColor: theme.palette.background.paper
-    },
-    title: {
-        margin: `${theme.spacing.unit * 4}px 0 ${theme.spacing.unit * 2}px`
+    extendedIcon: {
+        marginRight: theme.spacing(1),
     }
 });
 
 class ToDO extends Component {
     state = { 'item': '' };
-
-    generate = () => {
-        return this.props.items.map(item => (
-            <ListItem key={item.id}>
-                <ListItemText primary={item.description} />
-                <ListItemSecondaryAction>
-                    <IconButton
-                        aria-label="Delete"
-                        onClick={this.handleDelete}
-                        value={item.id}
-                    >
-                        <DeleteIcon />
-                    </IconButton>
-                </ListItemSecondaryAction>
-            </ListItem>
-        ));
-    };
 
     handleSubmit = event => {
         // console.log(this.state.item);
@@ -72,29 +47,50 @@ class ToDO extends Component {
         const { classes } = this.props;
 
         return (
-            <div>
-                <div>
+            <main>
+                <center>
                     <form noValidate autoComplete="off" >
-                        <TextField
-                            label="New Task"
-                            id="margin-dense"
-                            value={this.state.item}
-                            className={classes.textField}
-                            margin="dense"
-                            name="item"
-                            onChange={this.handleChange}
-                        />
-                        <Button onClick={this.handleSubmit}>Add</Button>
+                        <Grid container>
+                            <Grid item xs={11}>
+                                <TextField
+                                    label="New Task"
+                                    fullWidth={true}
+                                    id="margin-dense"
+                                    value={this.state.item}
+                                    className={classes.textField}
+                                    name="item"
+                                    onChange={this.handleChange}
+                                />
+                            </Grid>
+                            <Grid item xs={1}>
+                                <Fab color="primary" aria-label="add" className={classes.fab}>
+                                    <AddIcon onClick={this.handleSubmit} />
+                                </Fab>
+                            </Grid>
+                        </Grid>
                     </form>
-                </div>
-                <div>
-                    <Grid item container justify="space-evenly" alignItems="center">
-                        <div className={classes.demo}>
-                            <List dense={false}>{this.generate()}</List>
-                        </div>
+                    <br />
+                    <h2 style={{ textAlign: "initial" }}>{"List Of Task"}</h2>
+                    <Grid container justify="center" alignItems="center" spacing={3}>
+                        {this.props.items.map((item, i) => (
+                            <Fragment key={i}>
+                                <Grid item xs={12} sm={10}>
+                                    <div className="description">{item.description}</div>
+                                </Grid>
+                                <Grid item xs={12} sm={2} justify="flex-start">
+                                    <Fab color="secondary" aria-label="edit" className={classes.fab}>
+                                        <Icon>edit_icon</Icon>
+                                    </Fab>
+                                    <Fab aria-label="delete" onClick={this.handleDelete} className={classes.fab}>
+                                        <DeleteIcon />
+                                    </Fab>
+                                </Grid>
+                            </Fragment>
+                        ))
+                        }
                     </Grid>
-                </div>
-            </div>
+                </center>
+            </main>
         );
     }
 }

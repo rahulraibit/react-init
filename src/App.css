@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  margin: 3em 5em;
 }
 
 .App-logo {
@@ -30,4 +31,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.description{
+  border: 1px solid #cecece;
+  height: 34px;
+  background-color: gainsboro;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
